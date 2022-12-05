@@ -30,7 +30,6 @@ class State:
     # Move items from one stack to another
     def move(self, command):
         # Quantity of items to move
-        print(command)
         commandList = command.split(" ")
         # Quantity of items to move
         quant = int(commandList[1])
@@ -42,4 +41,10 @@ class State:
             # Pop rightmost element of source and append/push it to dest
             self.stacks[dest].append(self.stacks[source].pop())
         
-        print(self.stacks)
+    
+    # Return a string containing the top elements of each stack in order
+    def getTops(self):
+        returnString = ""
+        for stack in self.stacks:
+            returnString = returnString + stack[len(stack)-1]
+        return returnString

@@ -1,7 +1,7 @@
 from state import State
 
 inputs = list()
-with open("example", "r") as file:
+with open("input", "r") as file:
     inputs = file.readlines()
 
 # input cleaning
@@ -21,3 +21,6 @@ state = State(init_state)
 # Pass in movement commands to state
 for i in range(inputs.index("")+1, len(inputs)):
     state.move(inputs[i])
+
+# Print top of each stack
+print(state.getTops())
