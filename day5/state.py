@@ -27,8 +27,8 @@ class State:
                 if line[j] != " ":
                     self.stacks[int((j-1)/4)].append(line[j])
 
-    # Move items from one stack to another
-    def move(self, command):
+    # Takes a raw command and converts it in to usable variables
+    def __commandHelper(self, command):
         # Quantity of items to move
         commandList = command.split(" ")
         # Quantity of items to move
@@ -37,10 +37,27 @@ class State:
         source = int(commandList[3])-1
         dest = int(commandList[5])-1
 
+        return quant, source, dest
+    # Move items from one stack to another
+    def move(self, command):
+        quant, source, dest = self.__commandHelper(command)
+
         for _ in range(quant):
             # Pop rightmost element of source and append/push it to dest
             self.stacks[dest].append(self.stacks[source].pop())
         
+    def move9001(self, command):
+        quant, source, dest = self.__commandHelper(command)
+
+        # List representing what is currently held by the crane in order
+        craneList = deque()
+        for _ in range(quant):
+            # Pop rightmost element of source and append/push it to crane string
+            craneList.append(self.stacks[source].pop())
+        
+        # Append elements from craneList to dest
+        for _ in range(quant):
+            self.stacks[dest].append(craneList.pop())
     
     # Return a string containing the top elements of each stack in order
     def getTops(self):

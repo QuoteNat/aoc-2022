@@ -24,3 +24,13 @@ for i in range(inputs.index("")+1, len(inputs)):
 
 # Print top of each stack
 print(state.getTops())
+
+# ----------------PART 2-------------
+# Create new State object
+newState = State(init_state)
+
+# Pass in movement commands to state
+for i in range(inputs.index("")+1, len(inputs)):
+    newState.move9001(inputs[i])
+
+print(newState.getTops())
