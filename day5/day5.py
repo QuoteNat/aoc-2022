@@ -17,3 +17,7 @@ for i in range(inputs.index("")):
     init_state.append(inputs[i])
 
 state = State(init_state)
+
+# Pass in movement commands to state
+for i in range(inputs.index("")+1, len(inputs)):
+    state.move(inputs[i])
