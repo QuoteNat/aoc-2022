@@ -15,13 +15,19 @@ fn main() {
     };
 
     let reader = BufReader::new(file);
+    // Root folder/head of the tree
+    let mut root = unix::Folder{parent: None, files: Vec::new(), folders: Vec::new()};
+    let mut current_dir = &root;
     // Read the file line by line
     for line in reader.lines() {
+        // read in the line
         let line = match line {
             Err(why) => panic!("couldn't read line {}: {}", display, why),
             Ok(line) => line,
         };
 
-        println!("{}", line);
+        let line = line.trim();
+        let line_arr: Vec<&str> = line.split_whitespace().collect();
+        println!("{:?}", line_arr);
     }
 }
