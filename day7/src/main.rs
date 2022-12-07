@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::io::{prelude::*, BufReader};
 use std::path::Path;
+mod unix;
 
 fn main() {
     // Create path to input file
